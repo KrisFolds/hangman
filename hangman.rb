@@ -1,52 +1,58 @@
 
-Hangman = Hangman.new
-class Hangman_game
-	attr_reader :remaining_guesses, :answer
-	def initialize
-		@answer = secret_word
-		@remaining_guesses = 10
-		@guessed_letters = []
-	end
+
 
   def secret_word()
-    dictionary = ["apple", "banana", "coconut", "diced", "extreme", "fruit", "grape", "honey",
+
+    @remaining_guesses = 10
+
+    @word = ["apple", "banana", "coconut", "diced", "extreme", "fruit", "grape", "honey",
 "invent", "jalapeno", "kiwi", "lemon", "melon", "nectar", "opposite", "pear", "quiet",
 "rhine", "stem", "taste"]
-  @secret_word = dictionary.sample
+  @secret_word = @word.sample
   @secret_word_array = @secret_word.split('')
   puts @secret_word
-  @correct_guess = "_" * @secret_word.length
-  @correct_guess_array = @correct_guess.split('')
+  @correct_answers = "_" * @secret_word.length
+  @correct_answers_array = @correct_answers.split('')
+  return @secret_word_array
   end
   
-  secret_word()
+ 
 
-  def guessed_letters(letter)
-    	if @answer.include?(letter)
-        puts "Good job."
-        @guessed_letters.push(letter)
-        puts @guessed_letters
-      else
-        puts "Sorry that is incorrect."
-        @guessed_letters.push(letter)
-        @remaining_guesses -= 1
-        puts "You've used the following letters: #{@guessed_letters}."
+  def game_over?()
+   @remaining_guesses == 0
+  end
+ 
+  def play_game()
+    @guessed_letters = []
+    loop do 
+       puts "pick a letter"
+      @letter = gets.chomp
+      @secret_word_array.each_with_index do |value, key|
+      if @letter == value
+          @correct_answers_array[key] = @letter
       end
-    end
-  
-    def won?
-    @answer.all? do |g|
-      @guessed_letters.include?(g)
-      puts "Congratulations, you have won the game!"
-    end
-  end
+      end
+    
+      if @secret_word_array.include?(@letter)
+          puts "Good job! That letter is in the word."
+      else
+          @remaining_guesses -= 1
+          puts "I'm sorry, that letter is not in the word. Please enter another letter."
+          puts "You have #{@remaining_guesses} left. Don't give up now!"
+          
+      end
 
-  def game_over?
-    @guesses_left == 0 || won?
-    puts "I'm sorry but you have used up all of your chances."
-  end
+      @guessed_letters.push(@letter)
+      puts "You have used the following letters: #{@guessed_letters}"
 
+      p @correct_answers_array
+      if game_over?()
+          puts "Sorry, you have lost the game.  The word was #{@secret_word}"
+          break
+      elsif @correct_answers_array == @secret_word_array
+          puts "You have won the game"
+          break
+      end
+  end
 end
 
-
- 

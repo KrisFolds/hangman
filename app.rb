@@ -1,17 +1,12 @@
-
 require "sinatra"
-require_relative 'hangman.rb'
+require_relative "hangman.rb"
+
 get '/' do
-    redirect '/get_game'
+  	erb :game  
 end
 
-
-get '/get_game' do 
-	erb :game
-end
-	
-post '/get_letter' do
-	letter = params[:letter]
-	erb :hangman, :locals => {:letter => letter}
+post '/letter' do
+	@letter = params[:@letter]
+erb :play, :locals => {:@letter => @letter}	
 end
 
