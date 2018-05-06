@@ -1,9 +1,0 @@
-Hangman = Hangman.new
-class Hangman_game
-
-	def initialize
-    letter = key
-		@answer = secret_word
-		@remaining_guesses = 10
-		@guessed_letters = []
-	end

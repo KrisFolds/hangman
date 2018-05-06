@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+</head>
+
+<body onload="startTime()">
+
+<div id="txt"></div>
+
+</body>
+</html>
+
+
+<center><h2> Let us try a game of flower petal hangman. You get 10 wrong guesses.
+ <h2></center>
+ 	<img class="irc_mi" src="http://bestanimations.com/Animals/Insects/Butterflys/butterfly-animated-gif-45.gif" alt="Image result for garden gifs" width="200" height="200" style="margin-top: 0px;">
+ 	<br>
+<center> <img src='css/img/hangman10.png' style="width:200px;height:180px;"> </center>
+<br>
+<p><img class="irc_mi" src="http://www.bionicinterface.com/web/googida/art4ever/a0012/df02.gif" alt="Image result for animated dragonfly gifs" style="float:right; width="150" height="150""></p> 
+<p><img class="irc_mi" src="http://www.bionicinterface.com/web/googida/art4ever/a0012/df02.gif" alt="Image result for animated dragonfly gifs" style="float:left; width="150" height="150""></p> 
+
+	<center>Please enter a letter:</center>
+
+
+
+ 	<center><form method="post" action="letter_choice">
+     <input type="text" name="letter">
+    <input type="hidden" name="secret_word" value="<%=secret_word%>">
+    <input type="hidden" name="correct_word" value="<%= correct_word%>">
+    <input type="hidden" name="turns" value="<%= turns%>">
+    <input type="hidden" name="guessed_letters" value="<%= guessed_letters%>">
+   	<br>
+ 	<br>
+ <input type="submit">
+</form>
+</center>
+<img class="irc_mi" src="http://bestanimations.com/Animals/Insects/Bees/bee-animated-gif-31.gif" width="150" height="100" style="margin-top: 20px;" alt="Image result for animated bee images">
+
+

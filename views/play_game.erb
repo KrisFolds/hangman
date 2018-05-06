@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+</head>
+
+<body onload="startTime()">
+
+<div id="txt"></div>
+
+</body>
+</html>
+<img class="irc_mi" src="http://bestanimations.com/Animals/Insects/Butterflys/butterfly-animated-gif-45.gif" alt="Image result for garden gifs" width="200" height="200" style="margin-top: 20px;">
+
+<p><img class="irc_mi" src="http://www.bionicinterface.com/web/googida/art4ever/a0012/df02.gif" alt="Image result for animated dragonfly gifs" style="float:right; width="150" height="150""></p> 
+
+<p><img class="irc_mi" src="http://www.bionicinterface.com/web/googida/art4ever/a0012/df02.gif" alt="Image result for animated dragonfly gifs" style="float:left; width="150" height="150""></p> 
+
+
+<% turns = turns.to_i %>
+
+<%	loop do
+			secret_word.each_char do |char|
+			i = secret_word.index(char)
+			if letter == char
+				correct_word[i] = letter
+			end
+		end
+			if secret_word.include?(letter) %>
+			You have guessed the correct letter. Let's keep going.
+			<br>
+		<% else %>
+			<b>Sorry, you have not guessed the correct letter.<b>
+		
+			<% turns = turns - 1 %>
+			
+			You have <%= turns %> wrong guesses left.
+			
+		<% end %>
+		Your word is: <%= correct_word %>
+		<% guessed_letters = guessed_letters.insert(0, letter) %>
+		<br>
+
+		
+		<center>You have guessed the following letters: <%= guessed_letters %></center>
+			<br>
+			<% if game_over?(turns) %>
+			
+				<center><h2>Sorry, you have lost the game.  The word was <%= secret_word %>. Better luck next time.<h2></center>
+				<br>
+				<% break %>
+			<% elsif win?(secret_word, correct_word) %>
+			
+				You have saved me from dying. Thank you so much!!
+			
+				<% break %>
+			<% else %>
+	<br>
+	
+	Please enter a letter:
+
+	<form method="post" action="letter_choice">
+    <input type="text" name="letter">
+    <input type="hidden" name="secret_word" value="<%=secret_word%>">
+    <input type="hidden" name="correct_word" value="<%= correct_word%>">
+    <input type="hidden" name="turns" value="<%= turns%>">
+    <input type="hidden" name="guessed_letters" value="<%= guessed_letters%>">
+	<br>
+	<br>
+	<input type="submit">
+	</form>
+	<% break %>
+			<% end %>
+<% end %>
+<% case turns %>
+<% when 10 %>
+     <center><img src='css/img/hangman10.png' style="width:200px;height:180px;"></center>
+<% when 9 %>
+     <center><img src='css/img/hangman9.png' style="width:210px;height:190px;"></center>
+<% when 8 %>
+     <center><img src='css/img/hangman8.png' style="width:220px;height:200px;"></center>
+<% when 7 %>
+     <center><img src='css/img/hangman7.png' style="width:230px;height:210px;"></center>
+<% when 6 %>
+     <center><img src='css/img/hangman6.png' style="width:240px;height:220px;"></center> 
+<% when 5 %>
+     <center><img src='css/img/hangman5.png' style="width:250px;height:230px;"></center>
+<% when 4 %>
+     <center><img src='css/img/hangman4.png' style="width:260px;height:240px;"></center> 
+<% when 3 %>
+     <center><img src='css/img/hangman3.png' style="width:270px;height:250px;"></center>
+<% when 2 %>
+     <center><img src='css/img/hangman2.png' style="width:280px;height:260px;"></center> 
+<% when 1 %>
+     <center><img src='css/img/hangman1.png' style="width:290px;height:270px;"></center>
+<% when 0 %>
+     <center><img src='css/img/hangman0.png' style="width:300px;height:280px;"></center>
+<% end %>
+
+<img class="irc_mi" src="http://bestanimations.com/Animals/Insects/Bees/bee-animated-gif-31.gif" width="150" height="100" style="margin-top: 0px;" alt="Image result for animated bee images">
