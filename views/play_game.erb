@@ -2,21 +2,13 @@
 <html>
 <head>
 <script>
+
 function startTime() {
-    var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('txt').innerHTML =
-    h + ":" + m + ":" + s;
+    var d = new Date();
+    document.getElementById('txt').innerHTML = d
     var t = setTimeout(startTime, 500);
-}
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
+    }
+
 </script>
 </head>
 
@@ -36,10 +28,12 @@ function checkTime(i) {
 <% turns = turns.to_i %>
 
 <%	loop do
-			secret_word.each_char do |char|
-			i = secret_word.index(char)
+
+			secret_word.each_char.with_index do |char, key|
+
 			if letter == char
-				correct_word[i] = letter
+				correct_word[key] = letter
+				
 			end
 		end
 			if secret_word.include?(letter) %>
@@ -54,9 +48,8 @@ function checkTime(i) {
 			
 		<% end %>
 		Your word is: <%= correct_word %>
-		<% guessed_letters = guessed_letters.insert(0, letter) %>
+		<% guessed_letters = guessed_letters.insert(0, letter + ',') %>
 		<br>
-
 		
 		<center>You have guessed the following letters: <%= guessed_letters %></center>
 			<br>
@@ -90,27 +83,27 @@ function checkTime(i) {
 <% end %>
 <% case turns %>
 <% when 10 %>
-     <center><img src='css/img/hangman10.png' style="width:200px;height:180px;"></center>
+     <center><img src='/img/hangman10.png' style="width:200px;height:180px;"></center>
 <% when 9 %>
-     <center><img src='css/img/hangman9.png' style="width:210px;height:190px;"></center>
+     <center><img src='/img/hangman9.png' style="width:210px;height:190px;"></center>
 <% when 8 %>
-     <center><img src='css/img/hangman8.png' style="width:220px;height:200px;"></center>
+     <center><img src='/img/hangman8.png' style="width:220px;height:200px;"></center>
 <% when 7 %>
-     <center><img src='css/img/hangman7.png' style="width:230px;height:210px;"></center>
+     <center><img src='/img/hangman7.png' style="width:230px;height:210px;"></center>
 <% when 6 %>
-     <center><img src='css/img/hangman6.png' style="width:240px;height:220px;"></center> 
+     <center><img src='/img/hangman6.png' style="width:240px;height:220px;"></center> 
 <% when 5 %>
-     <center><img src='css/img/hangman5.png' style="width:250px;height:230px;"></center>
+     <center><img src='/img/hangman5.png' style="width:250px;height:230px;"></center>
 <% when 4 %>
-     <center><img src='css/img/hangman4.png' style="width:260px;height:240px;"></center> 
+     <center><img src='/img/hangman4.png' style="width:260px;height:240px;"></center> 
 <% when 3 %>
-     <center><img src='css/img/hangman3.png' style="width:270px;height:250px;"></center>
+     <center><img src='/img/hangman3.png' style="width:270px;height:250px;"></center>
 <% when 2 %>
-     <center><img src='css/img/hangman2.png' style="width:280px;height:260px;"></center> 
+     <center><img src='/img/hangman2.png' style="width:280px;height:260px;"></center> 
 <% when 1 %>
-     <center><img src='css/img/hangman1.png' style="width:290px;height:270px;"></center>
+     <center><img src='/img/hangman1.png' style="width:290px;height:270px;"></center>
 <% when 0 %>
-     <center><img src='css/img/hangman0.png' style="width:300px;height:280px;"></center>
+     <center><img src='/img/hangman0.png' style="width:300px;height:280px;"></center>
 <% end %>
 
 <img class="irc_mi" src="http://bestanimations.com/Animals/Insects/Bees/bee-animated-gif-31.gif" width="150" height="100" style="margin-top: 0px;" alt="Image result for animated bee images">
